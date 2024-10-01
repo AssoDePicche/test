@@ -5,27 +5,29 @@ const Success = (decoded, type) => {
     return;
   }
 
-  let found = false;
+  try {
+    decoded = JSON.parse(decoded);
+  } catch {
+    const error = document.getElementById("error");
 
-  decoded = JSON.parse(decoded)
+    error.style.display = "block";
 
-  json.forEach((item) => {
-    const obj = JSON.parse(item);
+    error.textContent = "Erro ao processar QR Code";
 
-    if (obj.token == decoded.token) {
-      found = true;
-    }
-  })
+    return;
+  }
 
   const camera = document.getElementById("camera");
 
-  if (!found) {
+  if (!decoded.gleba) {
     camera.style.display = "block";
 
     return;
   }
 
   camera.style.display = "none";
+
+  error.style.display = "none";
 
   const btn = document.getElementById("scan");
 
