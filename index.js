@@ -29,15 +29,15 @@ const Success = (decoded, type) => {
 
   const id = document.getElementById("id");
 
-  id.value = decoded.id;
+  id.setAttribute("value", decoded.id);
 
   const token = document.getElementById("token");
 
-  token.value = decoded.token;
+  token.setAttribute("value", decoded.token);
 
   const gleba = document.getElementById("gleba");
 
-  gleba.value = decoded.gleba;
+  gleba.setAttribute("value", decoded.gleba);
 
   form.style.display = "block";
 };
