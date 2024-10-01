@@ -1,19 +1,20 @@
-const button = document.getElementById("button");
-
-const video = document.getElementById("video");
-
 const message = document.getElementById("message");
 
-const scanner = new Html5Qrcode("camera");
+const scanner = new Html5QrcodeScanner("camera", {
+  qrbox: 250,
+  fps: 20
+});
 
-const Callback = (decodedText, decodedResult) => {
+const Success = (decodedText, decodedResult) => {
   if (decodedText) {
     message.textContent = decodedText;
 
-    scanner.stop();
+    scanner.clear();
   }
 };
 
-const config = {fps: 10, qrbox: {width:250, height:250}};
+const Err = (error) => {
+  message.textContent = error;
+}
 
-scanner.start({facingMode: "environment"}, config, Callback);
+scanner.render(Success, Err);
