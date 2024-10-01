@@ -28,9 +28,7 @@ const Success = (decodedText, decodedResult) => {
 
     json.forEach((item) => {
       if (item.token == token) {
-        console.log("Found")
-
-        break;
+        console.log("Found");
       }
     })
 
