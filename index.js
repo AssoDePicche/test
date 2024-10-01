@@ -9,11 +9,11 @@ const Success = (decoded, type) => {
 
   decoded = JSON.parse(decoded)
 
-  json.every((item, index) => {
-    if (item.token === decoded.token) {
-      found = true;
+  json.forEach((item) => {
+    const obj = JSON.parse(item);
 
-      return false;
+    if (obj.token == decoded.token) {
+      found = true;
     }
   })
 
