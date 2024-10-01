@@ -49,6 +49,8 @@ async function scanFrame() {
     sendQRCode(qrCodeValue);
   } catch (error) {
     console.error("QR Code Detection Error: ", error);
+
+    message.textContent = error;
   }
 
   if (scanning) {
@@ -57,7 +59,6 @@ async function scanFrame() {
 }
 
 function sendQRCode(token) {
-  message.textContent = token;
 }
 
 button.addEventListener('click', () => {
