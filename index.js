@@ -77,7 +77,7 @@ function stopScanning() {
 }
 
 function sendQRCode(token) {
-  const url = "https://github.com/AssoDePicche/test/blob/main/index.json";
+  const url = "./index.json";
 
   fetch(url).then(response => {
     if (!response.ok) {
