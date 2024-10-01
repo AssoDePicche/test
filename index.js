@@ -7,6 +7,8 @@ const Success = (decoded, type) => {
 
   let found = false;
 
+  decoded = JSON.parse(decoded)
+
   json.every((item, index) => {
     if (item.token === decoded.token) {
       found = true;
