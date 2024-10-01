@@ -15,27 +15,6 @@ def write_json_to_file(data, file_path):
     with open(file_path, 'w') as file:
         json.dump(data, file)
 
-
-def compress_and_encode(data):
-    json_str = json.dumps(data)
-
-    compressed_data = zlib.compress(json_str.encode('utf-8'))
-
-    encoded_data = compressed_data.hex()
-
-    return encoded_data
-
-
-def decode_and_decompress(encoded_data):
-    compressed_data = bytes.fromhex(encoded_data)
-
-    json_str = zlib.decompress(compressed_data).decode('utf-8')
-
-    decoded_data = json.loads(json_str)
-
-    return decoded_data
-
-
 def create_qr_code(data, filename):
     qr = qrcode.QRCode(
         version=1,
@@ -72,10 +51,4 @@ if __name__ == "__main__":
     for token in tokens:
         json_string = read_json_from_file(token + '.json')
 
-        encoded_string = compress_and_encode(json_string)
-
-        create_qr_code(encoded_string, token + '.png')
-
-        decoded_string = decode_and_decompress(encoded_string)
-
-        print("Decoded:", decoded_string)
+        create_qr_code(json_string, token + '.png')
