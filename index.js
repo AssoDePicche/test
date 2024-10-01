@@ -7,7 +7,7 @@ const scanner = new Html5QrcodeScanner("camera", {
 
 const Success = (decodedText, decodedResult) => {
   if (decodedText) {
-    message.textContent = decodedText;
+    message.textContent = `${decodedText} ${decodedResult}`;
 
     scanner.clear();
   }
