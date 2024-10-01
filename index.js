@@ -2,18 +2,11 @@ const json = ["{\"id\": 885265, \"token\": \"Dkjrcrmv\", \"gleba\": \"Lote 7\"}"
 
 const message = document.getElementById("message");
 
-const scanner = new Html5QrcodeScanner("camera", {
-  qrbox: 250,
-  fps: 20
-});
-
 const Success = (decoded, type) => {
   if (!decoded) {
     return;
   }
   
-  scanner.clear();
-
   let found = false;
 
   json.every((item, index) => {
@@ -29,4 +22,4 @@ const Success = (decoded, type) => {
 
 const Err = (error) => {}
 
-scanner.render(Success, Err);
+html5QrCode.start({facingMode: "environment"}, {fps: 10, qrbox: 250}, Success, Err);
