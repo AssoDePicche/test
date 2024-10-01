@@ -10,7 +10,7 @@ let barcodeDetector = null;
 
 async function startScanning() {
   if (!('BarcodeDetector' in window)) {
-    alert("BarcodeDetector isn't supported on this device");
+    message.textContent = "BarcodeDetector isn't supported on this device";
 
     return;
   }
@@ -24,6 +24,14 @@ async function startScanning() {
   scanning = true;
 
   scanFrame();
+
+  timeoutHandle = setTimeout(() => {
+    stopScanning();
+
+    message.textContent = "Failed to Scan QR Code. Try again";
+
+    button.textContent = "Retry";
+  }, 3000)
 }
 
 async function scanFrame() {
@@ -55,6 +63,16 @@ async function scanFrame() {
 
   if (scanning) {
     requestAnimationFrame(scanFrame);
+  }
+}
+
+function stopScanning() {
+  scanning = false;
+
+  clearTimeout(timeoutHandle);
+
+  if (video.srcObject) {
+    video.srcObject.getTracks().forEach(track => track.stop());
   }
 }
 
