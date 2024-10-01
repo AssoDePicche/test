@@ -25,6 +25,10 @@ const Success = (decoded, type) => {
 
   camera.style.display = "none";
 
+  const btn = document.getElementById("scan");
+
+  btn.textContent = decoded;
+
   const form = document.getElementById("form");
 
   const id = document.getElementById("id");
