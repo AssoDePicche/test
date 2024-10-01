@@ -31,7 +31,7 @@ async function startScanning() {
     message.textContent = "Failed to Scan QR Code. Try again";
 
     button.textContent = "Retry";
-  }, 3000)
+  }, 30000)
 }
 
 async function scanFrame() {
@@ -77,6 +77,21 @@ function stopScanning() {
 }
 
 function sendQRCode(token) {
+  const url = "https://github.com/AssoDePicche/test/blob/main/index.json";
+
+  fetch(url).then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+  }).then(data => {
+    message.textContent = data;
+  }).catch (error => {
+    console.error(error);
+
+    message.textContent = error;
+  })
 }
 
 button.addEventListener('click', () => {
