@@ -1,5 +1,3 @@
 python3 main.py
 
-mv *.png ./db
-
-mv *.json ./db
+mv *.png ./qrcodes

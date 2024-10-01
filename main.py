@@ -1,19 +1,7 @@
 import json
-import zlib
 import qrcode
 import string
 import random
-
-def read_json_from_file(file_path):
-    with open(file_path, 'r') as file:
-        json_data = json.load(file)
-
-    return json_data
-
-
-def write_json_to_file(data, file_path):
-    with open(file_path, 'w') as file:
-        json.dump(data, file)
 
 def create_qr_code(data, filename):
     qr = qrcode.QRCode(
@@ -33,22 +21,23 @@ def create_qr_code(data, filename):
 
 
 if __name__ == "__main__":
-    tokens = []
+    data = []
 
-    for _ in range(0, 10):
+    for _ in range(0, 20):
         rand_id = random.randint(0, 1000000)
 
         rand_token = ''.join(random.choices(string.ascii_letters, k=8))
 
         rand_gleba = 'Lote ' + str(random.randint(1, 10))
 
-        row = json.dumps({'id': rand_id, 'token': rand_token, 'gleba': rand_gleba})
+        data.append(json.dumps({'id': rand_id, 'token': rand_token, 'gleba': rand_gleba}))
 
-        write_json_to_file(row, rand_token + '.json')
+    with open('index.json', 'w') as file:
+        json.dump(data, file)
 
-        tokens.append(rand_token)
+    for item in data:
+        json_item = json.loads(item)
 
-    for token in tokens:
-        json_string = read_json_from_file(token + '.json')
+        filename: str = str(json_item['id']) + '.png'
 
-        create_qr_code(json_string, token + '.png')
+        create_qr_code(json_item, filename)
