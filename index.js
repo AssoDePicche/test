@@ -22,4 +22,6 @@ const Success = (decoded, type) => {
 
 const Err = (error) => {}
 
-html5QrCode.start({facingMode: "environment"}, {fps: 10, qrbox: 250}, Success, Err);
+const scanner = new Html5Qrcode("camera");
+
+scanner.start({facingMode: "environment"}, {fps: 10, qrbox: 250}, Success, Err);
