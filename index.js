@@ -11,10 +11,6 @@ const json = [
   }
 ];
 
-json.forEach((item) => {
-  console.log(item);
-});
-
 const message = document.getElementById("message");
 
 const scanner = new Html5QrcodeScanner("camera", {
@@ -22,17 +18,17 @@ const scanner = new Html5QrcodeScanner("camera", {
   fps: 20
 });
 
-const Success = (decodedText, decodedResult) => {
-  if (decodedText) {
-    const token = decodedText.token;
+const Success = (decoded, type) => {
+  if (decoded) {
+    let found = false;
 
     json.forEach((item) => {
-      if (item.token == token) {
-        console.log("Found");
+      if (item.token == decoded.token) {
+        found = true;
       }
     })
 
-    message.textContent = token;
+    message.textContent = (found) ? decoded : 'Not found';
 
     scanner.clear();
   }
