@@ -4,10 +4,7 @@ const message = document.getElementById("message");
 
 const scanner = new Html5QrcodeScanner("camera", {
   qrbox: 250,
-  fps: 20,
-  videoConstraints: {
-    facingMode: {exact: "environment"}
-  }
+  fps: 20
 });
 
 const Success = (decoded, type) => {
