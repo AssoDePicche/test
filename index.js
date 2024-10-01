@@ -8,21 +8,23 @@ const scanner = new Html5QrcodeScanner("camera", {
 });
 
 const Success = (decoded, type) => {
-  if (decoded) {
-    let found = false;
-
-    json.forEach((item) => {
-      if (item.token == decoded.token) {
-        found = true;
-      }
-    })
-
-    message.textContent = (found) ? decoded : 'Jabuticabeira não encontrada.';
+  if (!decoded) {
+    return;
   }
+  
+  scanner.clear();
+
+  let found = false;
+
+  json.forEach((item) => {
+    if (item.token === decoded.token) {
+      found = true;
+    }
+  })
+
+  message.textContent = (found) ? decoded : 'Jabuticabeira não encontrada.';
 };
 
-const Err = (error) => {
-  message.textContent = 'Não foi possível ler o QR Code. Tente Novamente.';
-}
+const Err = (error) => {}
 
 scanner.render(Success, Err);
