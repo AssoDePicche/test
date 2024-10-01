@@ -4,7 +4,10 @@ const message = document.getElementById("message");
 
 const scanner = new Html5QrcodeScanner("camera", {
   qrbox: 250,
-  fps: 20
+  fps: 20,
+  videoConstraints: {
+    facingMode: {exact: "environment"}
+  }
 });
 
 const Success = (decoded, type) => {
@@ -17,14 +20,12 @@ const Success = (decoded, type) => {
       }
     })
 
-    message.textContent = (found) ? decoded : 'Not found';
-
-    scanner.clear();
+    message.textContent = (found) ? decoded : 'Jabuticabeira não encontrada.';
   }
 };
 
 const Err = (error) => {
-  message.textContent = error;
+  message.textContent = 'Não foi possível ler o QR Code. Tente Novamente.';
 }
 
 scanner.render(Success, Err);
