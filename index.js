@@ -24,7 +24,17 @@ const scanner = new Html5QrcodeScanner("camera", {
 
 const Success = (decodedText, decodedResult) => {
   if (decodedText) {
-    message.textContent = `${decodedText} ${decodedResult}`;
+    const token = decodedText.token;
+
+    json.forEach((item) => {
+      if (item.token == token) {
+        console.log("Found")
+
+        break;
+      }
+    })
+
+    message.textContent = token;
 
     scanner.clear();
   }
