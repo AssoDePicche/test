@@ -4,10 +4,9 @@ const Success = (decoded, type) => {
   }
 
    try {
-    decoded = decoded.replace(/'/g, '"'); // Replace single quotes with double quotes
+    decoded = decoded.replace(/'/g, '"');
 
     decoded = JSON.parse(decoded);
-
   } catch {
     const error = document.getElementById("error");
 
@@ -29,9 +28,6 @@ const Success = (decoded, type) => {
   camera.style.display = "none";
 
   error.style.display = "none";
-
-  const btn = document.getElementById("scan");
-
 
   const form = document.getElementById("form");
 
