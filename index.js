@@ -4,7 +4,7 @@ const Success = (decoded, type) => {
   }
 
   try {
-    decoded.replace(/'/g, '"');
+    decoded = decoded.replace(/'/g, '"');
 
     decoded = JSON.parse(decoded);
   } catch {
