@@ -4,6 +4,8 @@ const Success = (decoded, type) => {
   }
 
   try {
+    decoded.replace(/'/g, '"');
+
     decoded = JSON.parse(decoded);
   } catch {
     const error = document.getElementById("error");
