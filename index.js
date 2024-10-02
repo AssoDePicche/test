@@ -1,5 +1,3 @@
-const json = [{"id": 827259,"token": "QFjwlyEg","gleba": "Lote 8"}];
-
 const Success = (decoded, type) => {
   if (!decoded) {
     return;
@@ -28,10 +26,6 @@ const Success = (decoded, type) => {
   camera.style.display = "none";
 
   error.style.display = "none";
-
-  const btn = document.getElementById("scan");
-
-  btn.textContent = decoded;
 
   const form = document.getElementById("form");
 

@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
-python main.py
+#!/bin/bash
+
+python3 main.py
 
 mv *.png ./qrcodes
