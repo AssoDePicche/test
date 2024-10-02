@@ -3,7 +3,7 @@ const Success = (decoded, type) => {
     return;
   }
 
-   try {
+  try {
     decoded = decoded.replace(/'/g, '"');
 
     decoded = JSON.parse(decoded);
